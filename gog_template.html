@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spec sheet layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ECEBE6; --ink:#141413; --rule:#8d8b84; --tab-text:#ECEBE6;
+  --label:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --value:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#171716;--ink:#E6E4DD;--rule:#6b6963;--tab-text:#171716}
+}
+:root[data-theme="dark"]{--paper:#171716;--ink:#E6E4DD;--rule:#6b6963;--tab-text:#171716}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--label);font-size:15px;line-height:1.35;min-height:100%}
+.page{position:relative;max-width:1000px;margin:0 auto;padding:28px 56px 48px 20px;overflow:hidden}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px;align-items:start}
+
+/* tabs */
+.tab-top{position:absolute;top:28px;right:0;background:var(--ink);color:var(--tab-text);font:700 64px/1 var(--label);height:70px;padding:0 0 0 14px;width:92px;overflow:hidden;white-space:nowrap}
+.tab-top span{display:block;transform:translateX(18px);padding-top:3px}
+.tab-side{position:fixed;right:0;top:46%;background:var(--ink);color:var(--tab-text);writing-mode:vertical-rl;font:500 22px/1 var(--value);padding:16px 8px;letter-spacing:.06em;z-index:5}
+
+/* boxes */
+.box{border:3px solid var(--ink);margin-bottom:18px}
+.title{display:grid;grid-template-columns:1.25fr 1fr;border:3px solid var(--ink);margin-bottom:12px}
+.title h1,.title p{margin:0;padding:12px 16px;font-weight:700}
+.title h1{font-size:32px;letter-spacing:.02em;border-right:2px solid var(--ink)}
+.title p{font-size:23px;display:flex;align-items:center;font-weight:500}
+h2{font-size:19px;font-weight:700;margin:14px 0 4px;letter-spacing:.08em}
+h2::before{content:"\25CF";margin-right:6px}
+
+table{width:100%;border-collapse:collapse;border:3px solid var(--ink);margin-bottom:18px}
+th,td{border:1px solid var(--rule);padding:5px 8px;font-weight:500;text-align:left;vertical-align:middle}
+tbody tr:first-child>*{border-top:0}
+th[scope=row]{letter-spacing:.28em;font-size:14px;white-space:nowrap}
+th.tight{letter-spacing:.06em;white-space:normal}
+td{font-family:var(--value);font-size:14px;text-align:center}
+td.u,th.u{width:3.2em;font:400 10px/1 var(--value);text-align:right;color:var(--ink);opacity:.8;letter-spacing:0}
+th.group{writing-mode:vertical-rl;text-align:center;letter-spacing:.5em;width:2.4em;border-right:1px solid var(--ink);padding:4px}
+td.std{width:38%}
+tbody tr{transition:background .12s,color .12s}
+tbody tr:hover{background:var(--ink);color:var(--paper)}
+tbody tr:hover td.u{color:var(--paper)}
+tbody tr:hover th,tbody tr:hover td{border-color:var(--paper)}
+
+/* meta */
+.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 28px;margin:0 0 18px;font-size:14px}
+.meta dt{letter-spacing:.14em}
+.meta dd{margin:0;font-family:var(--value);font-size:13px}
+.meta-head{margin-top:2px}
+
+/* image */
+.fig{margin:0 0 6px;border:1px solid var(--ink)}
+.halftone{aspect-ratio:1.6/1;background:
+  radial-gradient(circle at 50% 50%,var(--ink) 0 1.1px,transparent 1.5px) 0 0/5px 5px;
+  -webkit-mask-image:radial-gradient(ellipse 48% 44% at 52% 54%,#000 30%,transparent 100%);
+  mask-image:radial-gradient(ellipse 48% 44% at 52% 54%,#000 30%,transparent 100%)}
+.fig-wrap{border:1px solid var(--rule);margin-bottom:22px}
+.fig-wrap figcaption{font:400 11px/1.2 var(--value);padding:4px 8px;border-top:1px solid var(--rule)}
+
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.foot{margin-top:6px;font:400 12px var(--value);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.scroll{overflow-x:auto;margin-bottom:18px}
+.scroll table{margin-bottom:0;min-width:300px}
+
+@media (max-width:760px){
+  .page{padding:20px 44px 40px 12px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .title h1{font-size:24px}.title p{font-size:18px}
+  .tab-top{font-size:48px;height:56px;width:76px;top:20px}
+  .tab-side{font-size:18px;padding:12px 6px}
+  th[scope=row]{letter-spacing:.14em}
+}
+@media (prefers-reduced-motion:reduce){tbody tr{transition:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="tab-top" aria-hidden="true"><span>19</span></div>
+  <div class="tab-side" aria-hidden="true">220</div>
+
+  <div class="grid">
+    <!-- LEFT COLUMN -->
+    <main>
+      <div class="title" style="margin-right:0">
+        <h1>GLOBAL OVERGROOVE</h1>
+        <p>CRYSTAL BROADCAST</p>
+      </div>
+
+      <h2>Main data</h2>
+      <div class="scroll"><table>
+        <tbody>
+          <tr><th scope="row">Title</th><td class="u"></td><td>GORE METAL REDUX</td></tr>
+          <tr><th scope="row">Length</th><td class="u">m</td><td>12.400</td></tr>
+          <tr><th scope="row">Width</th><td class="u">m</td><td>6.200</td></tr>
+          <tr><th scope="row">Height</th><td class="u">m</td><td>3.500</td></tr>
+          <tr><th scope="row">Channels</th><td class="u">ch</td><td>16</td></tr>
+          <tr><th scope="row">Sample rate</th><td class="u">kHz</td><td>48.0</td></tr>
+          <tr><th scope="row">Run time</th><td class="u">min</td><td>38</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="scroll"><table>
+        <tbody>
+          <tr><th scope="row" rowspan="2">Load</th><th class="u">front</th><td>44</td><th class="u">rear</th><td>51</td></tr>
+          <tr><th class="u">total</th><td colspan="3">95</td></tr>
+          <tr><th scope="row" rowspan="2">Gross load</th><th class="u">front</th><td>63</td><th class="u">rear</th><td>87</td></tr>
+          <tr><th class="u">total</th><td colspan="3">150</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>Fixing torque</h2>
+      <div class="scroll"><table>
+        <tbody>
+          <tr><th class="group" rowspan="4" scope="rowgroup">Rig</th><th scope="row" class="tight">Truss clamp</th><td class="u">mm</td><td>8</td><td>2.6</td></tr>
+          <tr><th scope="row" class="tight">Speaker mount</th><td class="u">mm</td><td>6</td><td>1.2</td></tr>
+          <tr><th scope="row" class="tight">Hanging point</th><td class="u">mm</td><td>14</td><td>12.0</td></tr>
+          <tr><th scope="row" class="tight">Safety cable</th><td class="u">mm</td><td>14</td><td>6.5</td></tr>
+          <tr><th class="group" rowspan="4" scope="rowgroup">Room</th><th scope="row" class="tight">Panel bracket</th><td class="u">mm</td><td>8</td><td>2.6</td></tr>
+          <tr><th scope="row" class="tight">Floor plate</th><td class="u">mm</td><td>12</td><td>9.0</td></tr>
+          <tr><th scope="row" class="tight">Cable tray</th><td class="u">mm</td><td>8</td><td>0.6</td></tr>
+          <tr><th scope="row" class="tight">Sensor housing</th><td class="u">mm</td><td>8</td><td>1.25</td></tr>
+        </tbody>
+      </table></div>
+    </main>
+
+    <!-- RIGHT COLUMN -->
+    <aside>
+      <dl class="meta meta-head">
+        <dt>Opening</dt><dd>2026 . 02 . 05</dd>
+        <dt>Venue No.</dt><dd>MD23 &ndash; 1100001</dd>
+        <dt>Series No.</dt><dd>MD23 &ndash; 1100001</dd>
+        <dt>Reference</dt><dd>II &ndash; 151</dd>
+      </dl>
+
+      <figure class="fig-wrap">
+        <div class="halftone" role="img" aria-label="Halftone image placeholder"></div>
+        <figcaption>Fig. 1 &mdash; image placeholder, halftone grayscale</figcaption>
+      </figure>
+
+      <h2>Service values</h2>
+      <div class="scroll"><table>
+        <tbody>
+          <tr><th scope="row" class="tight">Fader travel</th><td class="u">mm</td><td>10&ndash;20</td></tr>
+          <tr><th scope="row" class="tight">Pedal travel</th><td class="u">mm</td><td>20&ndash;30</td></tr>
+          <tr><th scope="row" class="tight">Rim runout</th><td class="u">mm</td><td>2.0</td></tr>
+          <tr><th scope="row" rowspan="2" class="tight">Drum</th><th class="u">std</th><td>110</td></tr>
+          <tr><th class="u">limit</th><td>111</td></tr>
+          <tr><th scope="row" rowspan="2" class="tight">Disc</th><th class="u">std</th><td>4.0</td></tr>
+          <tr><th class="u">limit</th><td>3.5</td></tr>
+          <tr><th scope="row" rowspan="2" class="tight">Pressure</th><th class="u">front</th><td>1.25</td></tr>
+          <tr><th class="u">rear</th><td>1.25</td></tr>
+          <tr><th scope="row" class="tight">Idle</th><td class="u">rpm</td><td>1,300 &plusmn; 100</td></tr>
+          <tr><th scope="row" class="tight">Reservoir</th><td class="u">l</td><td>6.0</td></tr>
+          <tr><th scope="row" class="tight">Coolant</th><td class="u">l</td><td>&mdash;</td></tr>
+        </tbody>
+      </table></div>
+    </aside>
+  </div>
+
+  <div class="foot"><span>Index 220</span><a href="#top">Back to top</a></div>
+</div>
+</body>
+</html>
